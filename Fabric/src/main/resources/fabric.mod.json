@@ -1,0 +1,36 @@
+{
+    "schemaVersion": 1,
+    "id": "golemimprovements",
+    "version": "${version}",
+  
+    "name": "Golem Improvements",
+    "description": "Improves small things about golems to make them a bit more interesting and useful",
+    "authors": [
+      "Hidoni"
+    ],
+    "contact": {
+      "sources": "https://github.com/Hidoni/GolemImprovements"
+    },
+  
+    "license": "CC0-1.0",
+    "icon": "assets/modid/icon.png",
+  
+    "environment": "*",
+    "entrypoints": {
+      "main": [
+        "com.hidoni.golemimprovements.GolemImprovementsFabric"
+      ]
+    },
+    "mixins": [
+      "mixins.golemimprovements.common.json",
+      "mixins.golemimprovements.fabric.json"
+    ],
+  
+    "depends": {
+      "fabricloader": ">=0.14",
+      "fabric": "*",
+      "minecraft": "1.19.3",
+      "java": ">=17"
+    }
+  }
+  
