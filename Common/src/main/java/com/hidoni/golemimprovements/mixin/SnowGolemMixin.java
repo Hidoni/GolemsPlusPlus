@@ -3,6 +3,9 @@ package com.hidoni.golemimprovements.mixin;
 import com.hidoni.golemimprovements.entity.HeadItemWearingMob;
 import com.hidoni.golemimprovements.entity.VisionBlockingRangedAttackGoal;
 import com.hidoni.golemimprovements.tags.ItemTags;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -13,6 +16,7 @@ import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.animal.SnowGolem;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -54,6 +58,11 @@ public abstract class SnowGolemMixin extends AbstractGolem implements Shearable,
     private void handlePumpkinRightClick(Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> cir) {
         ItemStack itemStack = player.getItemInHand(interactionHand);
         if (itemStack.is(ItemTags.SNOW_GOLEM_HEAD_ITEMS_TAG) && this.isAlive() && !this.hasPumpkin()) {
+            SoundEvent soundEvent = SoundEvents.WOOD_PLACE;
+            if (itemStack.getItem() instanceof BlockItem blockItem) {
+                soundEvent = blockItem.getBlock().defaultBlockState().getSoundType().getPlaceSound();
+            }
+            this.level.playSound(null, this, soundEvent, SoundSource.PLAYERS, 1.0F, 1.0F);
             this.setPumpkin(true);
             setHeadItem(itemStack.copyWithCount(1));
             itemStack.shrink(1);
