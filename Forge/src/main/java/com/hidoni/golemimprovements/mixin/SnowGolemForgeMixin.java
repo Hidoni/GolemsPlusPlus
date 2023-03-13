@@ -12,8 +12,11 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 public class SnowGolemForgeMixin {
     // Forge completely ignores the original SnowGolem class's shear function, so we need 2 separate mixins for this.
     @ModifyArg(method = "onSheared", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;<init>(Lnet/minecraft/world/level/ItemLike;)V"), index = 0)
-    private ItemLike changeDroppedHeadItem(ItemLike $$0) {
+    private ItemLike changeDroppedHeadItem(ItemLike defaultHeadItem) {
         ItemStack headItem = ((HeadItemWearingMob)this).getHeadItem();
+        if (headItem.equals(ItemStack.EMPTY)) { // Could happen with a Snow Golem summoned through commands/spawn eggs.
+            return defaultHeadItem;
+        }
         ((HeadItemWearingMob)this).setHeadItem(ItemStack.EMPTY);
         return headItem.getItem();
     }
