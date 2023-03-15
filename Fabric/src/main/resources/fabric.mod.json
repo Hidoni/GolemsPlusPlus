@@ -1,29 +1,29 @@
 {
     "schemaVersion": 1,
-    "id": "golemimprovements",
+    "id": "golemsplusplus",
     "version": "${version}",
   
-    "name": "Golem Improvements",
-    "description": "Improves small things about golems to make them a bit more interesting and useful",
+    "name": "Golems++",
+    "description": "Improves small things about golems to make them a bit more interesting to have in your world.",
     "authors": [
       "Hidoni"
     ],
     "contact": {
-      "sources": "https://github.com/Hidoni/GolemImprovements"
+      "sources": "https://github.com/Hidoni/GolemsPlusPlus"
     },
   
-    "license": "CC0-1.0",
-    "icon": "assets/modid/icon.png",
+    "license": "MIT",
+    "icon": "icon.png",
   
     "environment": "*",
     "entrypoints": {
       "main": [
-        "com.hidoni.golemimprovements.GolemImprovementsFabric"
+        "com.hidoni.golemsplusplus.GolemsPlusPlusFabric"
       ]
     },
     "mixins": [
-      "mixins.golemimprovements.common.json",
-      "mixins.golemimprovements.fabric.json"
+      "mixins.golemsplusplus.common.json",
+      "mixins.golemsplusplus.fabric.json"
     ],
   
     "depends": {

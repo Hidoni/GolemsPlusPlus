@@ -59,7 +59,7 @@ minecraft {
         data {
             workingDirectory project.file('run')
             ideaModule "${rootProject.name}.${project.name}.main"
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', mod_id, '--all', '--output', file('../Common/src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing', file('/../Common/src/main/resources')
             taskName 'Data'
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
@@ -82,9 +82,9 @@ dependencies {
 
 apply plugin: 'org.spongepowered.mixin'
 mixin {
-    add sourceSets.main, "mixins.golemimprovements.refmap.json"
-    config 'mixins.golemimprovements.common.json'
-    config 'mixins.golemimprovements.forge.json'
+    add sourceSets.main, "mixins.golemsplusplus.refmap.json"
+    config 'mixins.golemsplusplus.common.json'
+    config 'mixins.golemsplusplus.forge.json'
 }
 
 tasks.withType(JavaCompile) {

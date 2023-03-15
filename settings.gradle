@@ -16,5 +16,5 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'goleimprovements'
+rootProject.name = 'golemsplusplus'
 include("Common", "Fabric", "Forge")
