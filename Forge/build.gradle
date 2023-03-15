@@ -12,6 +12,7 @@ plugins {
 }
 
 archivesBaseName = rootProject.archivesBaseName + '-forge'
+project.ext.mixin_refmap = "${archivesBaseName}-refmap.json"
 
 minecraft {
     mappings channel: 'official', version: minecraft_version
@@ -82,7 +83,7 @@ dependencies {
 
 apply plugin: 'org.spongepowered.mixin'
 mixin {
-    add sourceSets.main, "mixins.golemsplusplus.refmap.json"
+    add sourceSets.main, project.ext.mixin_refmap
     config 'mixins.golemsplusplus.common.json'
     config 'mixins.golemsplusplus.forge.json'
 }
@@ -93,6 +94,10 @@ tasks.withType(JavaCompile) {
 
 processResources {
     from project(":Common").sourceSets.main.resources
+
+    filesMatching("mixins.*.json") {
+        expand "mixin_refmap": project.ext.mixin_refmap
+    }
 }
 
 

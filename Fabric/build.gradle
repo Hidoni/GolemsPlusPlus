@@ -5,6 +5,7 @@ plugins {
 }
 
 archivesBaseName = rootProject.archivesBaseName + '-fabric'
+project.ext.mixin_refmap = "${archivesBaseName}-refmap.json"
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
@@ -39,6 +40,10 @@ processResources {
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version
+    }
+
+    filesMatching("mixins.*.json") {
+        expand "mixin_refmap": project.ext.mixin_refmap
     }
 }
 

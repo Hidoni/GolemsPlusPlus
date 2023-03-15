@@ -14,6 +14,7 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "refmap": "${mixin_refmap}"
 }
   
