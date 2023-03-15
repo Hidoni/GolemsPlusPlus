@@ -11,7 +11,7 @@ plugins {
     id 'net.minecraftforge.gradle' version '5.1.+'
 }
 
-archivesBaseName = "${mod_name}-forge-${minecraft_version}"
+archivesBaseName = rootProject.archivesBaseName + '-forge'
 
 minecraft {
     mappings channel: 'official', version: minecraft_version

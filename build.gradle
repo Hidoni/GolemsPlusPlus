@@ -1,7 +1,7 @@
 subprojects {
     
     apply plugin: 'java'
-    
+
     java.toolchain.languageVersion = JavaLanguageVersion.of(17)
     java.withSourcesJar()
     java.withJavadocJar()
@@ -55,4 +55,11 @@ subprojects {
 
         enabled = false
     }
+}
+
+allprojects {
+    apply plugin: "java"
+
+    archivesBaseName = rootProject.archives_base_name
+    version = "${rootProject.mod_version}+${rootProject.minecraft_version}"
 }
