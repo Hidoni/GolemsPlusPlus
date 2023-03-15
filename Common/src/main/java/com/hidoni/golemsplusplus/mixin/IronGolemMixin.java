@@ -33,12 +33,12 @@ public abstract class IronGolemMixin extends AbstractGolem {
         if (this.getOfferFlowerTick() == 0) {
             return;
         }
-        if (!this.level.isClientSide()) {
-            WrappedGoal wrappedOfferFlowerGoal = this.goalSelector.getRunningGoals().filter((WrappedGoal goal) -> goal.getGoal() instanceof OfferFlowerGoal).findFirst().orElseThrow();
-            wrappedOfferFlowerGoal.stop();
-        }
         ItemStack itemStack = player.getItemInHand(interactionHand);
         if (itemStack.equals(ItemStack.EMPTY)) {
+            if (!this.level.isClientSide()) {
+                WrappedGoal wrappedOfferFlowerGoal = this.goalSelector.getRunningGoals().filter((WrappedGoal goal) -> goal.getGoal() instanceof OfferFlowerGoal).findFirst().orElseThrow();
+                wrappedOfferFlowerGoal.stop();
+            }
             player.setItemInHand(interactionHand, HELD_ITEM);
             cir.setReturnValue(InteractionResult.sidedSuccess(this.level.isClientSide()));
         }
