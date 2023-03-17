@@ -17,6 +17,6 @@ public class VisionBlockingRangedAttackGoal extends RangedAttackGoal {
 
     @Override
     public boolean canUse() {
-        return super.canUse() && !this.headItemWearingMob.getHeadItem().is(ItemTags.VISION_BLOCKING_HEAD_ITEMS_TAG);
+        return !this.headItemWearingMob.getHeadItem().is(ItemTags.VISION_BLOCKING_HEAD_ITEMS_TAG) && super.canUse();
     }
 }

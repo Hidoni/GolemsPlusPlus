@@ -1,6 +1,7 @@
 package com.hidoni.golemsplusplus.mixin;
 
 import com.hidoni.golemsplusplus.entity.HeadItemWearingMob;
+import com.hidoni.golemsplusplus.entity.VisionBlockingLookAtPlayerGoal;
 import com.hidoni.golemsplusplus.entity.VisionBlockingRangedAttackGoal;
 import com.hidoni.golemsplusplus.tags.ItemTags;
 import net.minecraft.sounds.SoundEvent;
@@ -8,9 +9,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.Shearable;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RangedAttackGoal;
 import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.animal.SnowGolem;
@@ -73,5 +73,10 @@ public abstract class SnowGolemMixin extends AbstractGolem implements Shearable,
     @Redirect(method = "registerGoals()V", at = @At(value = "NEW", target = "(Lnet/minecraft/world/entity/monster/RangedAttackMob;DIF)Lnet/minecraft/world/entity/ai/goal/RangedAttackGoal;"))
     private RangedAttackGoal createVisionBlockingRangedAttackGoal(RangedAttackMob mob, double d, int i, float f) {
         return new VisionBlockingRangedAttackGoal(mob, d, i, f);
+    }
+
+    @Redirect(method = "registerGoals()V", at = @At(value = "NEW", target = "(Lnet/minecraft/world/entity/Mob;Ljava/lang/Class;F)Lnet/minecraft/world/entity/ai/goal/LookAtPlayerGoal;"))
+    private LookAtPlayerGoal createVisionBlockingLookAtPlayerGoal(Mob mob, Class<? extends LivingEntity> lookAtType, float f) {
+        return new VisionBlockingLookAtPlayerGoal(mob, lookAtType, f);
     }
 }
