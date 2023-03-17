@@ -1,0 +1,24 @@
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu/latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+      - uses: gradle/wrapper-validation-action@v1
+      - run: ./gradlew build curseforge modrinth
+        env:
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "./Forge/build/libs/*.jar,./Fabric/build/libs/*.jar"

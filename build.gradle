@@ -1,6 +1,7 @@
 subprojects {
     
     apply plugin: 'java'
+    apply from: '../gradle/changelog.gradle'
 
     java.toolchain.languageVersion = JavaLanguageVersion.of(17)
     java.withSourcesJar()
