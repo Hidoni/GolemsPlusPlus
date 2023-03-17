@@ -112,7 +112,7 @@ modrinth {
     versionNumber = "fabric-${project.version}"
     versionType = project.release_type
     changelog = project.ext.changelog
-    uploadFile = jar
+    uploadFile = remapJar
     additionalFiles = [sourcesJar]
     gameVersions = "${project.supported_versions}".split(',') as List<String>
     loaders = ["fabric"]
