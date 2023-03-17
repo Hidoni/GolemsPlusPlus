@@ -70,11 +70,13 @@ public abstract class SnowGolemMixin extends AbstractGolem implements Shearable,
         }
     }
 
+    @SuppressWarnings({"MixinAnnotationTarget", "InvalidMemberReference", "UnresolvedMixinReference", "InvalidInjectorMethodSignature"})
     @Redirect(method = "registerGoals()V", at = @At(value = "NEW", target = "(Lnet/minecraft/world/entity/monster/RangedAttackMob;DIF)Lnet/minecraft/world/entity/ai/goal/RangedAttackGoal;"))
     private RangedAttackGoal createVisionBlockingRangedAttackGoal(RangedAttackMob mob, double d, int i, float f) {
         return new VisionBlockingRangedAttackGoal(mob, d, i, f);
     }
 
+    @SuppressWarnings({"MixinAnnotationTarget", "InvalidMemberReference", "UnresolvedMixinReference", "InvalidInjectorMethodSignature"})
     @Redirect(method = "registerGoals()V", at = @At(value = "NEW", target = "(Lnet/minecraft/world/entity/Mob;Ljava/lang/Class;F)Lnet/minecraft/world/entity/ai/goal/LookAtPlayerGoal;"))
     private LookAtPlayerGoal createVisionBlockingLookAtPlayerGoal(Mob mob, Class<? extends LivingEntity> lookAtType, float f) {
         return new VisionBlockingLookAtPlayerGoal(mob, lookAtType, f);
