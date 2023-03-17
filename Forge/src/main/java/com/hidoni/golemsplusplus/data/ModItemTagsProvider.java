@@ -1,6 +1,6 @@
 package com.hidoni.golemsplusplus.data;
 
-import com.hidoni.golemsplusplus.tags.ItemTags;
+import com.hidoni.golemsplusplus.tags.ModItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -20,7 +20,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
-        this.tag(ItemTags.SNOW_GOLEM_HEAD_ITEMS_TAG).add(Items.PUMPKIN, Items.CARVED_PUMPKIN, Items.JACK_O_LANTERN);
-        this.tag(ItemTags.VISION_BLOCKING_HEAD_ITEMS_TAG).add(Items.PUMPKIN);
+        this.tag(ModItemTags.SNOW_GOLEM_HEAD_ITEMS_TAG).add(Items.PUMPKIN, Items.CARVED_PUMPKIN, Items.JACK_O_LANTERN);
+        this.tag(ModItemTags.VISION_BLOCKING_HEAD_ITEMS_TAG).add(Items.PUMPKIN);
     }
 }

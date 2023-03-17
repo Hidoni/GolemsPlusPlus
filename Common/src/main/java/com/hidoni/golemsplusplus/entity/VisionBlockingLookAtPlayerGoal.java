@@ -1,6 +1,6 @@
 package com.hidoni.golemsplusplus.entity;
 
-import com.hidoni.golemsplusplus.tags.ItemTags;
+import com.hidoni.golemsplusplus.tags.ModItemTags;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -18,6 +18,6 @@ public class VisionBlockingLookAtPlayerGoal extends LookAtPlayerGoal {
 
     @Override
     public boolean canUse() {
-        return !this.headItemWearingMob.getHeadItem().is(ItemTags.VISION_BLOCKING_HEAD_ITEMS_TAG) && super.canUse();
+        return !this.headItemWearingMob.getHeadItem().is(ModItemTags.VISION_BLOCKING_HEAD_ITEMS_TAG) && super.canUse();
     }
 }
