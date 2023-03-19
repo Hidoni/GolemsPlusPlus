@@ -1,6 +1,6 @@
 package com.hidoni.golemsplusplus.mixin;
 
-import com.hidoni.golemsplusplus.entity.HeadItemWearingMob;
+import com.hidoni.golemsplusplus.entity.ItemHoldingMob;
 import net.minecraft.client.renderer.entity.layers.SnowGolemHeadLayer;
 import net.minecraft.world.entity.animal.SnowGolem;
 import net.minecraft.world.item.BlockItem;
@@ -22,12 +22,12 @@ public class SnowGolemHeadLayerMixin {
 
     @ModifyVariable(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/animal/SnowGolem;FFFFFF)V", at = @At("STORE"), ordinal = 0)
     private ItemStack setRenderedSnowGolemHeadItem(ItemStack unused) {
-        return ((HeadItemWearingMob) this.instance).getHeadItem();
+        return ((ItemHoldingMob) this.instance).getHeldItem();
     }
 
     @ModifyVariable(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/animal/SnowGolem;FFFFFF)V", at = @At("STORE"), ordinal = 0)
     private BlockState setRenderedSnowGolemHeadItemBlockState(BlockState fallback) {
-        ItemStack headItem = ((HeadItemWearingMob) this.instance).getHeadItem();
+        ItemStack headItem = ((ItemHoldingMob) this.instance).getHeldItem();
         if (headItem.getItem() instanceof BlockItem blockItem) {
             return blockItem.getBlock().defaultBlockState();
         }
@@ -36,7 +36,7 @@ public class SnowGolemHeadLayerMixin {
 
     @ModifyVariable(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/animal/SnowGolem;FFFFFF)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)
     private int setPackedLightLevel(int packedLightIn) {
-        ItemStack headItem = ((HeadItemWearingMob) this.instance).getHeadItem();
+        ItemStack headItem = ((ItemHoldingMob) this.instance).getHeldItem();
         if (headItem.getItem() instanceof BlockItem blockItem) {
             int lightEmission = blockItem.getBlock().defaultBlockState().getLightEmission();
             packedLightIn |= (lightEmission << 4) | lightEmission;

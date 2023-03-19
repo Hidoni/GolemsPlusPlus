@@ -1,6 +1,6 @@
 package com.hidoni.golemsplusplus.mixin;
 
-import com.hidoni.golemsplusplus.entity.HeadItemWearingMob;
+import com.hidoni.golemsplusplus.entity.ItemHoldingMob;
 import com.hidoni.golemsplusplus.entity.VisionBlockingLookAtPlayerGoal;
 import com.hidoni.golemsplusplus.entity.VisionBlockingRangedAttackGoal;
 import com.hidoni.golemsplusplus.tags.ModItemTags;
@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SnowGolem.class)
-public abstract class SnowGolemMixin extends AbstractGolem implements Shearable, RangedAttackMob, HeadItemWearingMob {
+public abstract class SnowGolemMixin extends AbstractGolem implements Shearable, RangedAttackMob, ItemHoldingMob {
 
     private static final ItemStack DEFAULT_PUMPKIN = new ItemStack(Items.CARVED_PUMPKIN);
 
@@ -42,13 +42,13 @@ public abstract class SnowGolemMixin extends AbstractGolem implements Shearable,
         super(entityType, level);
     }
 
-    public void setHeadItem(ItemStack headItem) {
-        this.setItemSlot(EquipmentSlot.HEAD, headItem);
+    public void setHeldItem(ItemStack heldItem) {
+        this.setItemSlot(EquipmentSlot.HEAD, heldItem);
     }
 
-    public ItemStack getHeadItem() {
+    public ItemStack getHeldItem() {
         ItemStack headItem = this.getItemBySlot(EquipmentSlot.HEAD);
-        if (headItem.equals(ItemStack.EMPTY) && this.hasPumpkin()) {
+        if (headItem.isEmpty() && this.hasPumpkin()) {
             return DEFAULT_PUMPKIN;
         }
         return headItem;
@@ -64,7 +64,7 @@ public abstract class SnowGolemMixin extends AbstractGolem implements Shearable,
             }
             this.level.playSound(null, this, soundEvent, SoundSource.PLAYERS, 1.0F, 1.0F);
             this.setPumpkin(true);
-            setHeadItem(itemStack.copyWithCount(1));
+            setHeldItem(itemStack.copyWithCount(1));
             itemStack.shrink(1);
             cir.setReturnValue(InteractionResult.sidedSuccess(this.level.isClientSide));
         }

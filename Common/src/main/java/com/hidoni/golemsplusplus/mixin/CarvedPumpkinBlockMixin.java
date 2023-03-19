@@ -1,6 +1,6 @@
 package com.hidoni.golemsplusplus.mixin;
 
-import com.hidoni.golemsplusplus.entity.HeadItemWearingMob;
+import com.hidoni.golemsplusplus.entity.ItemHoldingMob;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.SnowGolem;
@@ -19,7 +19,7 @@ public class CarvedPumpkinBlockMixin {
     private static void setSnowGolemHeadItem(Level level, BlockPattern.BlockPatternMatch blockPatternMatch, Entity entity, BlockPos blockPos, CallbackInfo ci) {
         if (entity instanceof SnowGolem snowGolem) {
             ItemStack headItem = new ItemStack(level.getBlockState(blockPatternMatch.getFrontTopLeft()).getBlock().asItem());
-            ((HeadItemWearingMob) snowGolem).setHeadItem(headItem);
+            ((ItemHoldingMob) snowGolem).setHeldItem(headItem);
         }
     }
 }
